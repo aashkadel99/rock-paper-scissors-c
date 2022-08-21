@@ -9,17 +9,30 @@ char evaluateWinner(int x, int y);
 
 int main(){
 	
-	int tries = 3, x, y;
+	int x, y;
+	int playAgain = 1;
+	char choice;
 	
-	x = userChoice();
-	y = computerChoice();
-	
-	if (evaluateWinner(x,y) == 'P'){
-		printf("Player wins this round.\n");
-	} else if (evaluateWinner(x,y) == 'C') {
-		printf("Computer wins this round.\n");
-	} else {
-		printf("It is a Draw.");
+	while (playAgain == 1){
+		x = userChoice();
+		y = computerChoice();
+		
+		if (evaluateWinner(x,y) == 'P'){
+			printf("Player wins this round.\n");
+		} else if (evaluateWinner(x,y) == 'C') {
+			printf("Computer wins this round.\n");
+		} else {
+			printf("It is a Draw.\n");
+		}
+		
+		printf("Do you want to play again? (Y/N): ");
+		scanf(" %c", &choice);
+		
+		if (choice == 'Y' || choice == 'y'){
+			playAgain = 1;
+		} else {
+			playAgain = 0;
+		}
 	}
 	
 	return 0;
@@ -43,8 +56,10 @@ int userChoice(){
 		printf("Player chose Rock.\n");
 	} else if (play == 2){
 		printf("Player chose Paper.\n");
-	} else {
+	} else if (play == 3){
 		printf("Player chose Scissors.\n");
+	} else {
+		printf("Invalid choice.");
 	}
 	
 	return play;
