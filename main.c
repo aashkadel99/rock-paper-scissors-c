@@ -4,6 +4,7 @@
 void displayChoices();
 int userChoice();
 int computerChoice();
+char evaluateWinner(int x, int y);
 
 
 int main(){
@@ -13,12 +14,11 @@ int main(){
 	x = userchoice();
 	y = computerChoice()
 	
-	if (x == 1 and y == 2){
-			
+	if (evaluateWinner(x,y) == 'P'){
+		printf("Player wins this round.")
+	} else {
+		printf("Computer wins this round.")
 	}
-	
-	
-	
 	
 	return 0;
 }
@@ -44,6 +44,14 @@ int computerChoice(){
 	srand(time(0));
 	number = (rand() % 3) + 1;
 	return number;
+}
+
+char evaluateWinner(int x, int y){
+	if ((x == 1 && y == 3) || (x == 2) && (y == 1) || (x == 3) && (y == 2)){
+		return 'P';
+	} else {
+		return 'C';
+	}
 }
 
 
