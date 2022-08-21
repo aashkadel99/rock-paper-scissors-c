@@ -18,14 +18,14 @@ int main(){
 		y = computerChoice();
 		
 		if (evaluateWinner(x,y) == 'P'){
-			printf("Player wins this round.\n");
+			printf("WINNER: Player\n");
 		} else if (evaluateWinner(x,y) == 'C') {
-			printf("Computer wins this round.\n");
+			printf("WINNER: Computer\n");
 		} else {
 			printf("It is a Draw.\n");
 		}
 		
-		printf("Do you want to play again? (Y/N): ");
+		printf("\nDo you want to play again? (Y/N): ");
 		scanf(" %c", &choice);
 		
 		if (choice == 'Y' || choice == 'y'){
@@ -51,6 +51,7 @@ int userChoice(){
 	displayChoices();
 	printf("Enter your play: ");
 	scanf("%d", &play);
+	printf("\n");
 	
 	if(play == 1){
 		printf("Player chose Rock.\n");
@@ -58,8 +59,6 @@ int userChoice(){
 		printf("Player chose Paper.\n");
 	} else if (play == 3){
 		printf("Player chose Scissors.\n");
-	} else {
-		printf("Invalid choice.");
 	}
 	
 	return play;
@@ -72,17 +71,22 @@ int computerChoice(){
 	number = (rand() % 3) + 1;
 	
 	if(number == 1){
-		printf("Computer chooses Rock.\n");
+		printf("Computer chose Rock.\n");
 	} else if (number == 2){
-		printf("Computer chooses Paper.\n");
+		printf("Computer chose Paper.\n");
 	} else {
-		printf("Computer chooses Scissors.\n");
+		printf("Computer chose Scissors.\n");
 	}
 	
 	return number;
 }
 
 char evaluateWinner(int x, int y){
+	
+	if (x > 3){
+		printf("Invalid input from user. Run again.");
+		exit(1);
+	}
 	
 	if ((x == 1 && y == 3) || (x == 2 && y == 1) || (x == 3 && y == 2)){
 		return 'P';
